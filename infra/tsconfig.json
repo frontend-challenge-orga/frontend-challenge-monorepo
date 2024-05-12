@@ -4,9 +4,16 @@
     "outDir": "./dist",
     "noEmit": false,
     "rootDir": "../../",
+    "baseUrl": "./",
     "paths": {
       "@monorepo/domain": ["../domain/src"],
-      "@monorepo/packages": ["../packages/src"]
+      "@monorepo/packages": ["../packages/src"],
+
+      "@config/*": ["src/configuration/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@errors/*": ["src/errors/*"],
+      "@services/*": ["src/services/*"],
+      "@spi/*": ["src/spi/*"],
     }
   },
   "include": ["src/**/*", "../packages/**/*"],

@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "scripts": {
     "start": "node dist/src/index",
-    "dev": "nodemon -e ts --watch src --exec ts-node --project tsconfig.json src/index.ts -V",
+    "dev": "nodemon -e ts --watch src --exec ts-node -r tsconfig-paths/register --project tsconfig.json src/index.ts",
     "test": "jest"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
   "devDependencies": {
     "prisma": "^5.13.0",
     "supertest": "^7.0.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0"
   }
 }

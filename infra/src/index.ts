@@ -1,8 +1,8 @@
-import { startExpressServer } from './configuration/express.configuration';
+import { startExpressServer } from '@config/express.configuration';
 import { ChallengeSpi } from '@monorepo/domain';
-import { ChallengeInfraSpi } from './spi/challenge.infra.spi';
-import { ChallengeInfraService } from './services/challenge.infra.service';
-import { ChallengeController } from './controllers/challenge.controller';
+import { ChallengeInfraSpi } from '@spi/challenge.infra.spi';
+import { ChallengeInfraService } from '@services/challenge.infra.service';
+import { ChallengeController } from '@controllers/challenge.controller';
 
 import prisma from './configuration/prisma.configuration';
 
