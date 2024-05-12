@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "scripts": {
     "start": "node dist/src/index",
-    "dev": "ts-node --project tsconfig.json src/index.ts",
+    "dev": "nodemon -e ts --watch src --exec ts-node --project tsconfig.json src/index.ts -V",
     "test": "jest"
   },
   "keywords": [],
@@ -16,10 +16,10 @@
     "@types/express": "^4.17.21",
     "@types/express-serve-static-core": "^4.19.0",
     "@types/supertest": "^6.0.2",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0",
     "prisma": "^5.13.0",
     "supertest": "^7.0.0",
     "ts-node": "^10.9.2"
