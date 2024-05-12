@@ -2,14 +2,16 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
+    "rootDir": "../../",
     "paths": {
-      "@monorepo/domain": ["../domain/src"]
+      "@monorepo/domain": ["../domain/src"],
+      "@monorepo/packages": ["../packages/src"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../packages/**/*"],
   "references": [
     {
-      "path": "../domain"
+      "path": "../domain",
     }
   ]
 }

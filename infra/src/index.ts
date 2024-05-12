@@ -4,11 +4,13 @@ import { ChallengeInfraSpi } from './spi/challenge.infra.spi';
 import { ChallengeInfraService } from './services/challenge.infra.service';
 import { ChallengeController } from './controllers/challenge.controller';
 
+import prisma from './configuration/prisma.configuration';
+
 export const APPLICATION_PORT = 8080;
 
 const setupApplication = async () => {
   //Init SPI
-  const challengeSpi: ChallengeSpi = new ChallengeInfraSpi();
+  const challengeSpi: ChallengeSpi = new ChallengeInfraSpi(prisma);
 
   //Init Services
   const challengeInfraService: ChallengeInfraService = new ChallengeInfraService(challengeSpi);

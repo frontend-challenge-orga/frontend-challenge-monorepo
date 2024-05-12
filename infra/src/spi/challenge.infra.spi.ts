@@ -1,8 +1,14 @@
 import { ChallengeSpi } from '@monorepo/domain';
-import prisma from '../configuration/prisma.configuration';
+import { PrismaClient } from '@prisma/client';
 
 export class ChallengeInfraSpi implements ChallengeSpi {
+  private challengeRepository: PrismaClient;
+
+  constructor(dataSource: PrismaClient) {
+    this.challengeRepository = dataSource;
+  }
+
   async index() {
-    return prisma.challenge.findMany();
+    return this.challengeRepository.challenge.findMany();
   }
 }

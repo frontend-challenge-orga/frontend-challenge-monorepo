@@ -1,3 +1,4 @@
 packages:
   - 'domain'
   - 'infra'
+  - 'packages/**'

@@ -1,0 +1,8 @@
+{
+  "name": "@monorepo/packages",
+  "main": "dist/src/index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

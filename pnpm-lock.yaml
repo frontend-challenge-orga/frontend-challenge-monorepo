@@ -69,6 +69,8 @@ importers:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.12.11)(typescript@5.4.5)
 
+  packages: {}
+
 packages:
 
   '@ampproject/remapping@2.3.0':
