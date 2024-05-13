@@ -4,7 +4,7 @@ import { ChallengeInfraSpi } from '@spi/challenge.infra.spi';
 import { ChallengeInfraService } from '@services/challenge.infra.service';
 import { ChallengeController } from '@controllers/challenge.controller';
 
-import prisma from './configuration/prisma.configuration';
+import prisma from '@config/prisma.configuration';
 
 export const APPLICATION_PORT = 8080;
 

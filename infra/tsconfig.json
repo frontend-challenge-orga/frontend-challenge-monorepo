@@ -12,6 +12,7 @@
       "@config/*": ["src/configuration/*"],
       "@controllers/*": ["src/controllers/*"],
       "@errors/*": ["src/errors/*"],
+      "@middlewares/*": ["src/middlewares/*"],
       "@services/*": ["src/services/*"],
       "@spi/*": ["src/spi/*"],
     }
