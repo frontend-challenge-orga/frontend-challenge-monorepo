@@ -1,14 +1,14 @@
-import { ChallengeSpi } from '@package/domain';
+import { ChallengeRepository, ChallengeSpi } from '@package/domain';
 import { PrismaClient } from '@prisma/client';
 
-export class ChallengeInfraSpi implements ChallengeSpi {
+export class ChallengeInfraSpi implements ChallengeRepository {
   private challengeRepository: PrismaClient;
 
   constructor(dataSource: PrismaClient) {
     this.challengeRepository = dataSource;
   }
 
-  async index() {
+  async getChallenges() {
     return this.challengeRepository.challenge.findMany();
   }
 }

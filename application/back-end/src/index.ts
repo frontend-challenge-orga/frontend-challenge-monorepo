@@ -13,11 +13,14 @@ export const APPLICATION_PORT = 8080;
 
 const setupApplication = async () => {
   //Init SPI
-  const challengeSpi: ChallengeSpi = new ChallengeInfraSpi(prisma);
+  /*const challengeSpi: ChallengeSpi = new ChallengeInfraSpi(prisma);*/
   const sessionSpi: SessionSpi = new SessionInfraSpi(prisma);
 
+  // Init Repositories
+  const challengeRepository = new ChallengeInfraSpi(prisma);
+
   //Init Services
-  const challengeInfraService: ChallengeInfraService = new ChallengeInfraService(challengeSpi);
+  const challengeInfraService: ChallengeInfraService = new ChallengeInfraService(challengeRepository);
   const sessionInfraService: SessionInfraService = new SessionInfraService(sessionSpi);
 
   //Config Middleware
