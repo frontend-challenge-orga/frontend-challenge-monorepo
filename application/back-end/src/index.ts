@@ -1,12 +1,11 @@
 import { startExpressServer, configMiddleware } from '@config/express.configuration';
 import { ChallengeRepository } from '@repositories/challenge.repository';
-import { ChallengeInfraService } from '@services/challenge.infra.service';
 import { ChallengeController } from '@controllers/challenge.controller';
-
 import prisma from '@config/prisma.configuration';
 import { SessionRepository } from '@repositories/session.repository';
 import { SessionInfraService } from '@services/session.infra.service';
 import { AuthMiddleware } from '@middlewares/auth.middleware';
+import { IChallengeService, ChallengeService } from '@package/domain';
 
 export const APPLICATION_PORT = 8080;
 
@@ -16,7 +15,7 @@ const setupApplication = async () => {
   const sessionRepository = new SessionRepository(prisma);
 
   //Init Services
-  const challengeInfraService: ChallengeInfraService = new ChallengeInfraService(challengeRepository);
+  const challengeService: IChallengeService = new ChallengeService(challengeRepository);
   const sessionInfraService: SessionInfraService = new SessionInfraService(sessionRepository);
 
   //Config Middleware
@@ -24,7 +23,7 @@ const setupApplication = async () => {
   await configMiddleware(authMiddleware);
 
   //Init Controllers
-  ChallengeController(challengeInfraService);
+  ChallengeController(challengeService);
 
   await startExpressServer(APPLICATION_PORT);
 };

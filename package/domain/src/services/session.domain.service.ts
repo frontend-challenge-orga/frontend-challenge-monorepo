@@ -1,7 +1,7 @@
 import type { Session } from '../entities/session.entity';
 import type { ISessionRepository } from '../repositories';
 
-export class SessionDomainService implements ISessionRepository {
+export class SessionDomainService {
   constructor(private sessionRepository: ISessionRepository) {
     this.sessionRepository = sessionRepository;
   }

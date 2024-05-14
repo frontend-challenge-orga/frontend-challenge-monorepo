@@ -1,2 +1,2 @@
-export { ChallengeDomainService } from './challenge.domain.service';
+export * from './challenge.domain.service';
 export { SessionDomainService } from './session.domain.service';
