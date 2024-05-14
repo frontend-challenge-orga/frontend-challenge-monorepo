@@ -1,4 +1,4 @@
-import { SessionSpi } from '@monorepo/domain';
+import { SessionSpi } from '@package/domain';
 import { PrismaClient } from '@prisma/client';
 
 export class SessionInfraSpi implements SessionSpi {

@@ -1,5 +1,5 @@
-import { extractAuthToken, SessionApi } from '@monorepo/domain';
-import { PROTECTED_ENDPOINTS_ERROR } from '@monorepo/packages';
+import { extractAuthToken, SessionApi } from '@package/domain';
+import { PROTECTED_ENDPOINTS_ERROR } from '@package/common';
 import type { Request, Response, NextFunction } from 'express';
 import { CustomError } from '@errors/custom.error';
 

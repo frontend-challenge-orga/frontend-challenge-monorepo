@@ -1,4 +1,4 @@
-import { ChallengeApi, ChallengeDomainService, ChallengeSpi } from '@monorepo/domain';
+import { ChallengeApi, ChallengeDomainService, ChallengeSpi } from '@package/domain';
 
 export class ChallengeInfraService implements ChallengeApi {
   private challengeApi: ChallengeApi;

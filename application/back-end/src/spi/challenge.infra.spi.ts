@@ -1,4 +1,4 @@
-import { ChallengeSpi } from '@monorepo/domain';
+import { ChallengeSpi } from '@package/domain';
 import { PrismaClient } from '@prisma/client';
 
 export class ChallengeInfraSpi implements ChallengeSpi {

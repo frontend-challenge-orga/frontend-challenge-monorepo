@@ -2,13 +2,13 @@
   "files": [],
   "references": [
     {
-      "path": "infra"
+      "path": "application/back-end"
     },
     {
-      "path": "domain"
+      "path": "package/domain"
     },
     {
-      "path": "packages"
+      "path": "package/common"
     }
   ]
 }

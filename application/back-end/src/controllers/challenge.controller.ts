@@ -1,5 +1,5 @@
-import { ChallengeApi } from '@monorepo/domain';
-import { CHALLENGE_ENDPOINTS, CHALLENGE_ERRORS, PROTECTED_ENDPOINTS } from '@monorepo/packages';
+import { ChallengeApi } from '@package/domain';
+import { CHALLENGE_ENDPOINTS, CHALLENGE_ERRORS, PROTECTED_ENDPOINTS } from '@package/common';
 import { app } from '@config/express.configuration';
 import { CustomError } from '@errors/custom.error';
 import type { Response, NextFunction } from 'express';
