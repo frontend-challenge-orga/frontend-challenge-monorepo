@@ -13,7 +13,7 @@
       "@errors/*": ["src/errors/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@services/*": ["src/services/*"],
-      "@spi/*": ["src/spi/*"]
+      "@repositories/*": ["src/repositories/*"]
     }
   },
   "include": ["src"],

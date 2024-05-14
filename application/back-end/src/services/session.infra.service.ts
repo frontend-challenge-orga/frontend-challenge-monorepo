@@ -1,21 +1,21 @@
-import { SessionApi, SessionDomainService, SessionSpi } from '@package/domain';
+import { SessionDomainService, type ISessionRepository } from '@package/domain';
 
-export class SessionInfraService implements SessionApi {
-  private sessionApi: SessionApi;
+export class SessionInfraService implements ISessionRepository {
+  private sessionRepository: ISessionRepository;
 
-  constructor(sessionSpi: SessionSpi) {
-    this.sessionApi = new SessionDomainService(sessionSpi);
+  constructor(sessionRepository: ISessionRepository) {
+    this.sessionRepository = new SessionDomainService(sessionRepository);
   }
 
   getSessions() {
-    return this.sessionApi.getSessions();
+    return this.sessionRepository.getSessions();
   }
 
   getSessionsByUserId(userId: string) {
-    return this.sessionApi.getSessionsByUserId(userId);
+    return this.sessionRepository.getSessionsByUserId(userId);
   }
 
   getSessionsByToken(token: string) {
-    return this.sessionApi.getSessionsByToken(token);
+    return this.sessionRepository.getSessionsByToken(token);
   }
 }

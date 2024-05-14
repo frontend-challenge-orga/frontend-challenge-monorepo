@@ -1,13 +1,13 @@
-import { ChallengeApi, ChallengeDomainService, ChallengeSpi } from '@package/domain';
+import { ChallengeDomainService, type IChallengeRepository } from '@package/domain';
 
-export class ChallengeInfraService implements ChallengeApi {
-  private challengeApi: ChallengeApi;
+export class ChallengeInfraService implements IChallengeRepository {
+  private challengeRepository: IChallengeRepository;
 
-  constructor(challengeSpi: ChallengeSpi) {
-    this.challengeApi = new ChallengeDomainService(challengeSpi);
+  constructor(challengeRepository: IChallengeRepository) {
+    this.challengeRepository = new ChallengeDomainService(challengeRepository);
   }
 
   getChallenges() {
-    return this.challengeApi.getChallenges();
+    return this.challengeRepository.getChallenges();
   }
 }

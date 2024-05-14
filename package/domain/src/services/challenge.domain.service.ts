@@ -1,13 +1,12 @@
-import type { ChallengeApi } from '../api';
-import type { ChallengeSpi } from '../spi';
 import type { Challenge } from '../entities/challenge.entity';
+import type { IChallengeRepository } from '../repositories';
 
-export class ChallengeDomainService implements ChallengeApi {
-  constructor(private challengeSpi: ChallengeSpi) {
-    this.challengeSpi = challengeSpi;
+export class ChallengeDomainService implements IChallengeRepository {
+  constructor(private challengeRepository: IChallengeRepository) {
+    this.challengeRepository = challengeRepository;
   }
 
   async getChallenges(): Promise<Challenge[]> {
-    return this.challengeSpi.index();
+    return this.challengeRepository.getChallenges();
   }
 }
