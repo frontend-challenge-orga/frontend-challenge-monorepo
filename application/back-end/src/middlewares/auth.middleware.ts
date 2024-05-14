@@ -1,13 +1,13 @@
-import { extractAuthToken, SessionApi } from '@package/domain';
+import { extractAuthToken, ISessionRepository } from '@package/domain';
 import { PROTECTED_ENDPOINTS_ERROR } from '@package/common';
 import type { Request, Response, NextFunction } from 'express';
 import { CustomError } from '@errors/custom.error';
 
 export class AuthMiddleware {
-  private sessionApi: SessionApi;
+  private sessionRepository: ISessionRepository;
 
-  constructor(sessionApi: SessionApi) {
-    this.sessionApi = sessionApi;
+  constructor(sessionRepository: ISessionRepository) {
+    this.sessionRepository = sessionRepository;
     this.authenticate = this.authenticate.bind(this);
   }
 
@@ -22,7 +22,7 @@ export class AuthMiddleware {
     }
 
     try {
-      const sessions = await this.sessionApi.getSessionsByToken(token);
+      const sessions = await this.sessionRepository.getSessionsByToken(token);
 
       if (!sessions.length) {
         next(new CustomError(PROTECTED_ENDPOINTS_ERROR.TOKEN_INVALID, 401));

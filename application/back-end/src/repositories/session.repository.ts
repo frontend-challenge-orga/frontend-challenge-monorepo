@@ -1,18 +1,18 @@
-import { SessionSpi } from '@package/domain';
-import { PrismaClient } from '@prisma/client';
+import type { ISessionRepository } from '@package/domain';
+import type { PrismaClient } from '@prisma/client';
 
-export class SessionInfraSpi implements SessionSpi {
+export class SessionRepository implements ISessionRepository {
   private sessionRepository: PrismaClient;
 
   constructor(dataSource: PrismaClient) {
     this.sessionRepository = dataSource;
   }
 
-  async index() {
+  async getSessions() {
     return this.sessionRepository.session.findMany();
   }
 
-  async findByUserId(userId: string) {
+  async getSessionsByUserId(userId: string) {
     return this.sessionRepository.session.findMany({
       where: {
         userId: userId,
@@ -20,7 +20,7 @@ export class SessionInfraSpi implements SessionSpi {
     });
   }
 
-  async findByToken(token: string) {
+  async getSessionsByToken(token: string) {
     return this.sessionRepository.session.findMany({
       where: {
         sessionToken: token,

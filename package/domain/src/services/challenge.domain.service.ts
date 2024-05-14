@@ -1,10 +1,8 @@
-import type { ChallengeApi } from '../api';
-import type { ChallengeSpi } from '../spi';
 import type { Challenge } from '../entities/challenge.entity';
-import { ChallengeRepository } from '../repositories/challenge.repository';
+import type { IChallengeRepository } from '../repositories';
 
-export class ChallengeDomainService implements ChallengeRepository {
-  constructor(private challengeRepository: ChallengeRepository) {
+export class ChallengeDomainService implements IChallengeRepository {
+  constructor(private challengeRepository: IChallengeRepository) {
     this.challengeRepository = challengeRepository;
   }
 

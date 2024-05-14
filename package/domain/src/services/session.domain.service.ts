@@ -1,21 +1,20 @@
-import { SessionApi } from '../api';
-import { SessionSpi } from '../spi';
-import { Session } from '../entities/session.entity';
+import type { Session } from '../entities/session.entity';
+import type { ISessionRepository } from '../repositories';
 
-export class SessionDomainService implements SessionApi {
-  constructor(private sessionSpi: SessionSpi) {
-    this.sessionSpi = sessionSpi;
+export class SessionDomainService implements ISessionRepository {
+  constructor(private sessionRepository: ISessionRepository) {
+    this.sessionRepository = sessionRepository;
   }
 
   async getSessions(): Promise<Session[]> {
-    return this.sessionSpi.index();
+    return this.sessionRepository.getSessions();
   }
 
   async getSessionsByUserId(userId: string): Promise<Session[]> {
-    return this.sessionSpi.findByUserId(userId);
+    return this.sessionRepository.getSessionsByUserId(userId);
   }
 
   async getSessionsByToken(token: string): Promise<Session[]> {
-    return this.sessionSpi.findByToken(token);
+    return this.sessionRepository.getSessionsByToken(token);
   }
 }

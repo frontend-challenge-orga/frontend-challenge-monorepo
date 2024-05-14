@@ -1,7 +1,7 @@
-import { ChallengeRepository, ChallengeSpi } from '@package/domain';
-import { PrismaClient } from '@prisma/client';
+import type { IChallengeRepository } from '@package/domain';
+import type { PrismaClient } from '@prisma/client';
 
-export class ChallengeInfraSpi implements ChallengeRepository {
+export class ChallengeRepository implements IChallengeRepository {
   private challengeRepository: PrismaClient;
 
   constructor(dataSource: PrismaClient) {

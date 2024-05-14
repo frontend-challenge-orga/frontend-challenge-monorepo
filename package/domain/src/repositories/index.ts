@@ -1,1 +1,2 @@
-export { ChallengeRepository } from './challenge.repository';
+export { IChallengeRepository } from './challenge.repository';
+export { ISessionRepository } from './session.repository';
