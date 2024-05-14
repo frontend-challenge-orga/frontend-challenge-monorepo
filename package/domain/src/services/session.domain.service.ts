@@ -1,10 +1,13 @@
 import type { Session } from '../entities/session.entity';
 import type { ISessionRepository } from '../repositories';
 
-export class SessionDomainService {
-  constructor(private sessionRepository: ISessionRepository) {
-    this.sessionRepository = sessionRepository;
-  }
+export interface ISessionService {
+  getSessions(): Promise<Session[]>;
+  getSessionsByUserId(userId: string): Promise<Session[]>;
+  getSessionsByToken(token: string): Promise<Session[]>;
+}
+export class SessionService implements ISessionService {
+  constructor(private sessionRepository: ISessionRepository) {}
 
   async getSessions(): Promise<Session[]> {
     return this.sessionRepository.getSessions();

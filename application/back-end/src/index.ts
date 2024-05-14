@@ -3,9 +3,8 @@ import { ChallengeRepository } from '@repositories/challenge.repository';
 import { ChallengeController } from '@controllers/challenge.controller';
 import prisma from '@config/prisma.configuration';
 import { SessionRepository } from '@repositories/session.repository';
-import { SessionInfraService } from '@services/session.infra.service';
 import { AuthMiddleware } from '@middlewares/auth.middleware';
-import { IChallengeService, ChallengeService } from '@package/domain';
+import { IChallengeService, ChallengeService, ISessionService, SessionService } from '@package/domain';
 
 export const APPLICATION_PORT = 8080;
 
@@ -16,7 +15,7 @@ const setupApplication = async () => {
 
   //Init Services
   const challengeService: IChallengeService = new ChallengeService(challengeRepository);
-  const sessionInfraService: SessionInfraService = new SessionInfraService(sessionRepository);
+  const sessionInfraService: ISessionService = new SessionService(sessionRepository);
 
   //Config Middleware
   const authMiddleware = new AuthMiddleware(sessionInfraService);
