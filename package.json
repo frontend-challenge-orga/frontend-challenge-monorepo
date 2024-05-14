@@ -1,14 +1,16 @@
 {
-  "name": "monorepo",
+  "name": "frontend-challenge-monorepo",
   "private": true,
   "main": "index.js",
   "scripts": {
     "build": "tsc --build --verbose tsconfig.build.json",
+    "dev": "pnpm --filter ./application/back-end run dev",
     "start": "pnpm --filter infra run start",
-    "dev": "pnpm --filter infra run dev"
+    "dev:domain": "pnpm --filter ./package/domain run start_watch",
+    "dev:common": "pnpm --filter ./package/common run start_watch",
+    "dev:back": "pnpm --filter ./application/back-end run dev",
+    "test:back": "pnpm --filter ./application/back-end run test"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.3",

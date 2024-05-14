@@ -1,4 +1,4 @@
-import { SessionApi, SessionDomainService, SessionSpi } from '@monorepo/domain';
+import { SessionApi, SessionDomainService, SessionSpi } from '@package/domain';
 
 export class SessionInfraService implements SessionApi {
   private sessionApi: SessionApi;

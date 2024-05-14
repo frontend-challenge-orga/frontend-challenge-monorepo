@@ -1,0 +1,13 @@
+{
+  "name": "@package/domain",
+  "main": "./dist/src/index.js",
+  "scripts": {
+    "test": "jest",
+    "test_watch": "jest --watch",
+    "build": "tsc",
+    "start_watch": "tsc -w"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
