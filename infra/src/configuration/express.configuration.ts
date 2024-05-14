@@ -10,13 +10,13 @@ export const configMiddleware = async (authMiddleware: AuthMiddleware) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
+  app.use('/authenticated-route*', authMiddleware.authenticate);
+
   app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
     res.status(err.statusCode || 500).json({
       message: err.message || 'An unexpected error occurred',
     });
   });
-
-  app.use('/authenticated-route*', authMiddleware.authenticate);
 };
 
 export const startExpressServer = (port: number): Promise<http.Server> => {

@@ -12,7 +12,7 @@ export const ChallengeController = (challengeApi: ChallengeApi) => {
         const challenges = await challengeApi.getChallenges();
         res.status(200).json(challenges);
       } catch (error) {
-        if (error instanceof Error) next(new CustomError(CHALLENGE_ERRORS.GET_CHALLENGES, 500));
+        next(new CustomError(CHALLENGE_ERRORS.GET_CHALLENGES, 500));
       }
     },
   );

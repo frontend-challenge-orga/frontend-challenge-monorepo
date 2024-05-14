@@ -19,4 +19,12 @@ export class SessionInfraSpi implements SessionSpi {
       },
     });
   }
+
+  async findByToken(token: string) {
+    return this.sessionRepository.session.findMany({
+      where: {
+        sessionToken: token,
+      },
+    });
+  }
 }

@@ -1,5 +1,5 @@
-import { SessionApi } from '../api/session.api';
-import { SessionSpi } from '../spi/session.spi';
+import { SessionApi } from '../api';
+import { SessionSpi } from '../spi';
 import { Session } from '../entities/session.entity';
 
 export class SessionDomainService implements SessionApi {
@@ -13,5 +13,9 @@ export class SessionDomainService implements SessionApi {
 
   async getSessionsByUserId(userId: string): Promise<Session[]> {
     return this.sessionSpi.findByUserId(userId);
+  }
+
+  async getSessionsByToken(token: string): Promise<Session[]> {
+    return this.sessionSpi.findByToken(token);
   }
 }

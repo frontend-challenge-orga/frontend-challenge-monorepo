@@ -1,24 +1,35 @@
-import { SessionApi } from '@monorepo/domain';
+import { extractAuthToken, SessionApi } from '@monorepo/domain';
 import { PROTECTED_ENDPOINTS_ERROR } from '@monorepo/packages';
 import type { Request, Response, NextFunction } from 'express';
+import { CustomError } from '@errors/custom.error';
 
 export class AuthMiddleware {
   private sessionApi: SessionApi;
 
   constructor(sessionApi: SessionApi) {
     this.sessionApi = sessionApi;
+    this.authenticate = this.authenticate.bind(this);
   }
 
   async authenticate(req: Request, res: Response, next: NextFunction): Promise<void> {
-    const token = req.headers['authorization'];
+    const tokenAuthorization = req.headers['authorization'];
+
+    const token = extractAuthToken(tokenAuthorization);
 
     if (!token) {
       res.status(401).json({ message: PROTECTED_ENDPOINTS_ERROR.TOKEN_NOT_PROVIDED });
       return;
     }
 
-    // TODO: Validate the token
-    const sessions = await this.sessionApi.getSessionsByUserId(token);
+    try {
+      const sessions = await this.sessionApi.getSessionsByToken(token);
+
+      if (!sessions.length) {
+        next(new CustomError(PROTECTED_ENDPOINTS_ERROR.TOKEN_INVALID, 401));
+      }
+    } catch (error) {
+      next(new CustomError(PROTECTED_ENDPOINTS_ERROR.TOKEN_VALIDATION_ERROR, 500));
+    }
 
     next();
   }

@@ -1,4 +1,4 @@
-import { startExpressServer, configMiddleware } from '@config/express.configuration';
+import { startExpressServer, configMiddleware, app } from '@config/express.configuration';
 import { ChallengeSpi, SessionSpi } from '@monorepo/domain';
 import { ChallengeInfraSpi } from '@spi/challenge.infra.spi';
 import { ChallengeInfraService } from '@services/challenge.infra.service';

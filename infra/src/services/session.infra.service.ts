@@ -14,4 +14,8 @@ export class SessionInfraService implements SessionApi {
   getSessionsByUserId(userId: string) {
     return this.sessionApi.getSessionsByUserId(userId);
   }
+
+  getSessionsByToken(token: string) {
+    return this.sessionApi.getSessionsByToken(token);
+  }
 }
