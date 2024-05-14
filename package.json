@@ -4,10 +4,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build --verbose tsconfig.build.json",
-    "dev": "pnpm --filter ./application/back-end run dev",
-    "start": "pnpm --filter infra run start",
-    "dev:domain": "pnpm --filter ./package/domain run start_watch",
-    "dev:common": "pnpm --filter ./package/common run start_watch",
+    "dev": "pnpm run --parallel dev",
+    "start": "pnpm --filter ./application/back-end run start",
+    "dev:domain": "pnpm --filter ./package/domain run dev",
+    "dev:common": "pnpm --filter ./package/common run dev",
     "dev:back": "pnpm --filter ./application/back-end run dev",
     "test:back": "pnpm --filter ./application/back-end run test"
   },
