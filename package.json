@@ -9,7 +9,8 @@
     "dev:domain": "pnpm --filter ./package/domain run dev",
     "dev:common": "pnpm --filter ./package/common run dev",
     "dev:back": "pnpm --filter ./application/back-end run dev",
-    "test:back": "pnpm --filter ./application/back-end run test"
+    "test:back": "pnpm --filter ./application/back-end run test",
+    "gui:prisma": "pnpm --filter ./application/back-end run gui:prisma"
   },
   "license": "ISC",
   "devDependencies": {
