@@ -1,6 +1,6 @@
 import { inputValidation } from '@middlewares/input-validation.middleware';
-import { CustomError } from '@errors/custom.error';
-import { NextFunction, Request, Response } from 'express';
+import { CustomError } from 'src/error/custom.error';
+import { Request, Response } from 'express';
 import * as z from 'zod';
 
 describe('inputValidation', () => {

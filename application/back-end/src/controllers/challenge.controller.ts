@@ -1,7 +1,7 @@
 import { app } from '@config/express.configuration';
 import { inputValidation } from '@middlewares/input-validation.middleware';
-import { CustomError } from '@errors/custom.error';
-import { CHALLENGE_ENDPOINTS, CHALLENGE_ERRORS, PROTECTED_ENDPOINTS, createChallengeSchema } from '@package/common';
+import { UnexpectedError } from '#error';
+import { CHALLENGE_ENDPOINTS, PROTECTED_ENDPOINTS, createChallengeSchema } from '@package/common';
 import type { IChallengeService } from '@package/domain';
 import type { Response, NextFunction } from 'express';
 
@@ -13,7 +13,7 @@ export const setupChallengeController = (challengeService: IChallengeService) =>
         const challenges = await challengeService.getChallenges();
         res.status(200).json(challenges);
       } catch (error) {
-        next(new CustomError(CHALLENGE_ERRORS.GET_CHALLENGES, 500));
+        next(new UnexpectedError());
       }
     },
   );
@@ -27,7 +27,7 @@ export const setupChallengeController = (challengeService: IChallengeService) =>
         const challenge = await challengeService.createChallenge(req.body);
         res.status(201).json(challenge);
       } catch (error) {
-        next(new CustomError(CHALLENGE_ERRORS.CREATE_CHALLENGE, 500));
+        next(new UnexpectedError());
       }
     },
   );

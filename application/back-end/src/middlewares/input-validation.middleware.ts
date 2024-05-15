@@ -1,15 +1,14 @@
 import * as z from 'zod';
 import { NextFunction, Request, Response } from 'express';
-import { CustomError } from '@errors/custom.error';
+import { BadRequestError } from '@errors/general.error';
 
 export const inputValidation = (schema: z.ZodSchema<any>) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);
 
     if (!result.success) {
-      const errorDetails = result.error.errors.map((err) => `${err.path.join('.')}: ${err.message}`).join(', ');
-      next(new CustomError(`Input not valid: ${errorDetails}`, 400));
-      return;
+      const detail = result.error.errors.map((err) => `${err.path.join('.')}: ${err.message}`).join(', ');
+      next(new BadRequestError({ detail }));
     }
 
     req.body = result.data;

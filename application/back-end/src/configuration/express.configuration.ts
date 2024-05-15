@@ -1,8 +1,6 @@
 import express from 'express';
 import * as http from 'http';
-import { CustomError } from '@errors/custom.error';
 import { AuthMiddleware } from '@middlewares/auth.middleware';
-import type { Request, Response, NextFunction } from 'express';
 
 export const app = express();
 

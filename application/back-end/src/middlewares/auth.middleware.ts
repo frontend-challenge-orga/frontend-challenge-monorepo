@@ -1,7 +1,7 @@
 import { extractAuthToken, ISessionRepository } from '@package/domain';
-import { PROTECTED_ENDPOINTS_ERROR } from '@package/common';
+import { HttpStatus, PROTECTED_ENDPOINTS_ERROR } from '@package/common';
 import type { Request, Response, NextFunction } from 'express';
-import { CustomError } from '@errors/custom.error';
+import { UnauthorizedError, UnexpectedError } from '@errors/general.error';
 
 export class AuthMiddleware {
   private sessionRepository: ISessionRepository;
@@ -17,7 +17,7 @@ export class AuthMiddleware {
     const token = extractAuthToken(tokenAuthorization);
 
     if (!token) {
-      res.status(401).json({ message: PROTECTED_ENDPOINTS_ERROR.TOKEN_NOT_PROVIDED });
+      res.status(HttpStatus.UNAUTHORIZED).json({ message: PROTECTED_ENDPOINTS_ERROR.TOKEN_NOT_PROVIDED });
 
       return;
     }
@@ -26,10 +26,10 @@ export class AuthMiddleware {
       const sessions = await this.sessionRepository.getSessionsByToken(token);
 
       if (!sessions.length) {
-        next(new CustomError(PROTECTED_ENDPOINTS_ERROR.TOKEN_INVALID, 401));
+        next(new UnauthorizedError({ detail: 'no session found' }));
       }
     } catch (error) {
-      next(new CustomError(PROTECTED_ENDPOINTS_ERROR.TOKEN_VALIDATION_ERROR, 500));
+      next(new UnexpectedError({ detail: 'invalid token' }));
     }
 
     next();

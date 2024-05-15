@@ -10,10 +10,11 @@
     "paths": {
       "@config/*": ["src/configuration/*"],
       "@controllers/*": ["src/controllers/*"],
-      "@errors/*": ["src/errors/*"],
+      "@errors/*": ["src/error/*"],
       "@middlewares/*": ["src/middlewares/*"],
       "@services/*": ["src/services/*"],
-      "@repositories/*": ["src/repositories/*"]
+      "@repositories/*": ["src/repositories/*"],
+      "#error": ["src/error/index"]
     }
   },
   "include": ["src"],
