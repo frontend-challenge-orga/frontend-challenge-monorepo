@@ -1,5 +1,6 @@
 export const CHALLENGE_ERRORS = {
   GET_CHALLENGES: 'An unexpected error occurred while fetching challenges',
+  CREATE_CHALLENGE: 'An unexpected error occurred while creating a challenge',
 };
 
 export const PROTECTED_ENDPOINTS_ERROR = {

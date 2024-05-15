@@ -18,6 +18,7 @@ export class AuthMiddleware {
 
     if (!token) {
       res.status(401).json({ message: PROTECTED_ENDPOINTS_ERROR.TOKEN_NOT_PROVIDED });
+
       return;
     }
 
