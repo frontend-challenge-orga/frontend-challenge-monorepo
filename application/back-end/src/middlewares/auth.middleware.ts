@@ -1,7 +1,6 @@
 import { extractAuthToken, ISessionRepository } from '@package/domain';
-import { HttpStatus, PROTECTED_ENDPOINTS_ERROR } from '@package/common';
 import type { Request, Response, NextFunction } from 'express';
-import { UnauthorizedError, UnexpectedError } from '@errors/general.error';
+import { UnauthorizedError, UnexpectedError } from '#error';
 
 export class AuthMiddleware {
   private sessionRepository: ISessionRepository;

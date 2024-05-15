@@ -1,5 +1,5 @@
 import { inputValidation } from '@middlewares/input-validation.middleware';
-import { CustomError } from 'src/error/custom.error';
+import { CustomError } from '#error';
 import { Request, Response } from 'express';
 import * as z from 'zod';
 
