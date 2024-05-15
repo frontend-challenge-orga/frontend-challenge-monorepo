@@ -2,18 +2,18 @@ import type { ISessionRepository } from '@package/domain';
 import type { PrismaClient } from '@prisma/client';
 
 export class SessionRepository implements ISessionRepository {
-  private sessionRepository: PrismaClient;
+  private repository: PrismaClient;
 
   constructor(dataSource: PrismaClient) {
-    this.sessionRepository = dataSource;
+    this.repository = dataSource;
   }
 
   async getSessions() {
-    return this.sessionRepository.session.findMany();
+    return this.repository.session.findMany();
   }
 
   async getSessionsByUserId(userId: string) {
-    return this.sessionRepository.session.findMany({
+    return this.repository.session.findMany({
       where: {
         userId: userId,
       },
@@ -21,7 +21,7 @@ export class SessionRepository implements ISessionRepository {
   }
 
   async getSessionsByToken(token: string) {
-    return this.sessionRepository.session.findMany({
+    return this.repository.session.findMany({
       where: {
         sessionToken: token,
       },

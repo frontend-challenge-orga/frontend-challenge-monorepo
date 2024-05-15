@@ -4,7 +4,7 @@ import { app } from '@config/express.configuration';
 import { CustomError } from '@errors/custom.error';
 import type { Response, NextFunction } from 'express';
 
-export const ChallengeController = (challengeService: IChallengeService) => {
+export const setupChallengeController = (challengeService: IChallengeService) => {
   app.get(
     PROTECTED_ENDPOINTS.AUTHENTICATED_ROUTE + CHALLENGE_ENDPOINTS.GET_CHALLENGES,
     async (_, res: Response, next: NextFunction) => {
