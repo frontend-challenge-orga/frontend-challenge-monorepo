@@ -17,9 +17,7 @@ export class AuthMiddleware {
     const token = extractAuthToken(tokenAuthorization);
 
     if (!token) {
-      res.status(HttpStatus.UNAUTHORIZED).json({ message: PROTECTED_ENDPOINTS_ERROR.TOKEN_NOT_PROVIDED });
-
-      return;
+      next(new UnauthorizedError({ detail: 'no token provided' }));
     }
 
     try {
@@ -39,8 +37,7 @@ export class AuthMiddleware {
     const token = req.headers['authorization'];
 
     if (!token) {
-      res.status(401).json({ message: PROTECTED_ENDPOINTS_ERROR.TOKEN_NOT_PROVIDED });
-      return;
+      next(new UnauthorizedError({ detail: 'no token provided' }));
     }
 
     // TODO: Validate the token and extract the role information
