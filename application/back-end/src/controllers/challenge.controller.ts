@@ -6,17 +6,14 @@ import type { IChallengeService } from '@package/domain';
 import type { Response, NextFunction } from 'express';
 
 export const setupChallengeController = (challengeService: IChallengeService) => {
-  app.get(
-    PROTECTED_ENDPOINTS.AUTHENTICATED_ROUTE + CHALLENGE_ENDPOINTS.GET_CHALLENGES,
-    async (_, res: Response, next: NextFunction) => {
-      try {
-        const challenges = await challengeService.getChallenges();
-        res.status(200).json(challenges);
-      } catch (error) {
-        next(new UnexpectedError());
-      }
-    },
-  );
+  app.get(CHALLENGE_ENDPOINTS.GET_CHALLENGES, async (_, res: Response, next: NextFunction) => {
+    try {
+      const challenges = await challengeService.getChallenges();
+      res.status(200).json(challenges);
+    } catch (error) {
+      next(new UnexpectedError());
+    }
+  });
 
   app.post(
     CHALLENGE_ENDPOINTS.CREATE_CHALLENGE,
