@@ -5,6 +5,9 @@
       "path": "application/back-end"
     },
     {
+      "path": "application/front-end"
+    },
+    {
       "path": "package/domain"
     },
     {
