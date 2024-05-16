@@ -1,4 +1,4 @@
-import type { Challenge } from '../entities/challenge.entity';
+import type { Challenge } from '../entities';
 import type { IChallengeRepository } from '../repositories';
 
 export interface IChallengeService {
