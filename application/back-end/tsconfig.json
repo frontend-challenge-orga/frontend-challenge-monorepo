@@ -13,6 +13,7 @@
       "@middlewares/*": ["src/middlewares/*"],
       "@services/*": ["src/services/*"],
       "@repositories/*": ["src/repositories/*"],
+      "#mock": ["src/__mock__/index"],
       "#error": ["src/error/index"]
     }
   },

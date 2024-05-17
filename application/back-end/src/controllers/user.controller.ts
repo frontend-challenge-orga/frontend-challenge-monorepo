@@ -44,7 +44,7 @@ export const setupUserController = (userService: IUserService) => {
     PROTECTED_ENDPOINTS.ADMIN_ROUTE + USER_ENDPOINTS.DELETE_USER,
     async (req, res: Response, next: NextFunction) => {
       try {
-        /*await userService.deleteUser(req.params.id);*/
+        await userService.deleteUser(req.params.id);
         res.status(200).json({ message: 'User deleted' });
       } catch (error) {
         next(new UnexpectedError());

@@ -1,7 +1,13 @@
 import { inputValidation } from '@middlewares/input-validation.middleware';
+import { getMockReq, getMockRes } from '@jest-mock/express';
 import { CustomError } from '#error';
-import { Request, Response } from 'express';
 import * as z from 'zod';
+
+const { res, next, mockClear } = getMockRes();
+
+beforeEach(() => {
+  mockClear();
+});
 
 describe('inputValidation', () => {
   it('should call next with a CustomError if validation fails', () => {
@@ -11,14 +17,11 @@ describe('inputValidation', () => {
 
     const middleware = inputValidation(schema);
 
-    const req = {
+    const req = getMockReq({
       body: {
-        name: 123, // This will fail validation because name should be a string
+        name: 123,
       },
-    } as Request;
-
-    const res = {} as Response;
-    const next = jest.fn();
+    });
 
     middleware(req, res, next);
 
@@ -29,16 +32,14 @@ describe('inputValidation', () => {
     const schema = z.object({
       name: z.string(),
     });
+
     const middleware = inputValidation(schema);
 
-    const req = {
+    const req = getMockReq({
       body: {
-        name: 'John Doe', // This will pass validation
+        name: 'John Doe',
       },
-    } as Request;
-
-    const res = {} as Response;
-    const next = jest.fn();
+    });
 
     middleware(req, res, next);
 
