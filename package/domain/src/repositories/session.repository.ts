@@ -1,4 +1,4 @@
-import { Session } from '../entities/session.entity';
+import { Session } from '../entities';
 
 export interface ISessionRepository {
   getSessions(): Promise<Session[]>;

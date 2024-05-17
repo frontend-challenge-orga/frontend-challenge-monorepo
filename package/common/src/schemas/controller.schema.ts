@@ -15,3 +15,12 @@ export const createChallengeSchema = z.object({
   starter_code_path_file: z.string(),
   starter_figma_path_file: z.string(),
 });
+
+export const updateUserSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  email: z.string().email(),
+  image: z.string(),
+  role: z.enum(['USER', 'COLLABORATOR', 'ADMIN']),
+  points: z.number(),
+});

@@ -11,17 +11,17 @@ class ChallengeRepository implements IChallengeRepository {
     this.http = http;
   }
 
-  async getChallenges(): Promise<Challenge[]> {
+  async getChallenges() {
     const challenges = await this.http.get<ChallengeDTO[]>(CHALLENGE_ENDPOINTS.GET_CHALLENGES);
     return challenges.map((challenge) => this.fromDTO(challenge));
   }
 
-  async createChallenge(id: Challenge): Promise<Challenge> {
+  async createChallenge(id: Challenge) {
     const challenge = await this.http.post<ChallengeDTO>(CHALLENGE_ENDPOINTS.CREATE_CHALLENGE, { id });
     return this.fromDTO(challenge);
   }
 
-  private fromDTO(dto: ChallengeDTO): Challenge {
+  private fromDTO(dto: ChallengeDTO) {
     return {
       id: dto.id,
       name: dto.name,

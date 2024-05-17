@@ -4,7 +4,5 @@ import { ChallengeService } from '@domain/services';
 export default async function HomePage() {
   const challenges = await new ChallengeService(challengeRepository).getChallenges();
 
-  console.log(challenges);
-
   return <main></main>;
 }
