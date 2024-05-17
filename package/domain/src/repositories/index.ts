@@ -1,3 +1,4 @@
-export { IChallengeRepository } from './challenge.repository';
-export { ISessionRepository } from './session.repository';
-export { IHttpRepository } from './http.repository';
+export * from './challenge.repository';
+export * from './session.repository';
+export * from './http.repository';
+export * from './user.repository';

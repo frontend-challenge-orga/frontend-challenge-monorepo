@@ -9,6 +9,7 @@ export const configMiddleware = async (authMiddleware: AuthMiddleware) => {
   app.use(express.urlencoded({ extended: true }));
 
   app.use('/authenticated-route*', authMiddleware.authenticate);
+  app.use('/admin-route*', authMiddleware.admin);
 };
 
 export const startExpressServer = (port: number): Promise<http.Server> => {

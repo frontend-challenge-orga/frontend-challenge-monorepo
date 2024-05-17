@@ -1,1 +1,1 @@
-export { createChallengeSchema } from './controller.schema';
+export * from './controller.schema';

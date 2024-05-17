@@ -1,6 +1,13 @@
 export const CHALLENGE_ENDPOINTS = {
   GET_CHALLENGES: '/challenges',
-  CREATE_CHALLENGE: '/challenge/create',
+  CREATE_CHALLENGE: '/challenges/create',
+};
+
+export const USER_ENDPOINTS = {
+  GET_USERS: '/users',
+  GET_USER: '/users/:id',
+  UPDATE_USER: '/users/update/:id',
+  DELETE_USER: '/users/delete/:id',
 };
 
 export const PROTECTED_ENDPOINTS = {
