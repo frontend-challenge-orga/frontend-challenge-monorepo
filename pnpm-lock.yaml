@@ -50,6 +50,9 @@ importers:
       express:
         specifier: ^4.19.2
         version: 4.19.2
+      stripe:
+        specifier: ^15.7.0
+        version: 15.7.0
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -187,6 +190,10 @@ importers:
         version: 5.4.5
 
   package/domain:
+    dependencies:
+      '@package/common':
+        specifier: workspace:^
+        version: link:../common
     devDependencies:
       typescript:
         specifier: ^5.4.5
@@ -2940,6 +2947,10 @@ packages:
   strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  stripe@15.7.0:
+    resolution: {integrity: sha512-hTJhh0Gc+l+hj2vuzaFCh0T46l7793W3wg4J9Oyy3Wu+Ofswd0OgTS4XNt7G9XHJAyHpTmNRNbWgGwn73P4j7g==}
+    engines: {node: '>=12.*'}
 
   styled-jsx@5.1.1:
     resolution: {integrity: sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==}
@@ -6604,6 +6615,11 @@ snapshots:
   strip-final-newline@2.0.0: {}
 
   strip-json-comments@3.1.1: {}
+
+  stripe@15.7.0:
+    dependencies:
+      '@types/node': 20.12.12
+      qs: 6.12.1
 
   styled-jsx@5.1.1(@babel/core@7.24.5)(react@18.2.0):
     dependencies:

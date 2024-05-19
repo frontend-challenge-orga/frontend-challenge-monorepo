@@ -14,7 +14,8 @@
       "@services/*": ["src/services/*"],
       "@repositories/*": ["src/repositories/*"],
       "#mock": ["src/__mock__/index"],
-      "#error": ["src/error/index"]
+      "#error": ["src/error/index"],
+      "#type": ["src/types/index"],
     }
   },
   "include": ["src"],

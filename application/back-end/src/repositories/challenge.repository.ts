@@ -1,6 +1,6 @@
 import type { IChallengeRepository } from '@package/domain';
+import type { Challenge } from '@package/domain';
 import type { PrismaClient } from '@prisma/client';
-import { Challenge } from '@package/domain/dist/src/entities/challenge.entity';
 
 export class ChallengeRepository implements IChallengeRepository {
   private challengeRepository: PrismaClient;
