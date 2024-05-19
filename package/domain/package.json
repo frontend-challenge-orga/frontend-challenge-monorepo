@@ -7,6 +7,9 @@
     "build": "tsc",
     "dev": "tsc -w"
   },
+  "dependencies": {
+    "@package/common": "workspace:^"
+  },
   "devDependencies": {
     "typescript": "^5.4.5"
   }

@@ -1,4 +1,4 @@
-import { Challenge } from '../entities';
+import type { Challenge } from '../entities';
 
 export interface IChallengeRepository {
   getChallenges(): Promise<Challenge[]>;

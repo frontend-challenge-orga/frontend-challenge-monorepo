@@ -4,6 +4,8 @@ import { AuthMiddleware } from '@middlewares/auth.middleware';
 
 export const app = express();
 
+export const APPLICATION_PORT = 8080;
+
 export const configMiddleware = async (authMiddleware: AuthMiddleware) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));

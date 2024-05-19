@@ -3,7 +3,7 @@ import { inputValidation } from '@middlewares/input-validation.middleware';
 import { UnexpectedError } from '#error';
 import { CHALLENGE_ENDPOINTS, createChallengeSchema } from '@package/common';
 import type { IChallengeService } from '@package/domain';
-import type { Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 
 export const setupChallengeController = (challengeService: IChallengeService) => {
   app.get(CHALLENGE_ENDPOINTS.GET_CHALLENGES, async (_, res: Response, next: NextFunction) => {
@@ -18,7 +18,7 @@ export const setupChallengeController = (challengeService: IChallengeService) =>
   app.post(
     CHALLENGE_ENDPOINTS.CREATE_CHALLENGE,
     inputValidation(createChallengeSchema),
-    async (req, res: Response, next: NextFunction) => {
+    async (req: Request, res: Response, next: NextFunction) => {
       try {
         const challenge = await challengeService.createChallenge(req.body);
         res.status(201).json(challenge);

@@ -10,6 +10,10 @@ export const USER_ENDPOINTS = {
   DELETE_USER: '/users/delete/:id',
 };
 
+export const PAYMENT_ENDPOINTS = {
+  CREATE_CHECKOUT_SESSION: '/create-checkout-session',
+};
+
 export const PROTECTED_ENDPOINTS = {
   AUTHENTICATED_ROUTE: '/authenticated-route',
   ADMIN_ROUTE: '/admin-route',

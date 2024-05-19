@@ -24,3 +24,9 @@ export const updateUserSchema = z.object({
   role: z.enum(['USER', 'COLLABORATOR', 'ADMIN']),
   points: z.number(),
 });
+
+export const createPaymentSchema = z.object({
+  customer_id: z.string(),
+  customer_email: z.string().email(),
+  subscription_duration: z.enum(['MONTHLY', 'YEARLY']),
+});
