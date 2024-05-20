@@ -1,4 +1,4 @@
-import { IUserRepository, User } from '@package/domain';
+import type { IUserRepository, User } from '@package/domain';
 import type { PrismaClient } from '@prisma/client';
 
 export class UserRepository implements IUserRepository {

@@ -1,5 +1,5 @@
-import { IPaymentRepository } from '../repositories';
-import { SubscriptionDurationType } from '@package/common';
+import type { IPaymentRepository } from '../repositories';
+import type { SubscriptionDurationType } from '@package/common';
 
 export interface IPaymentService {
   createCheckoutSession(
