@@ -1,5 +1,5 @@
-import { User } from '../entities';
-import { Role } from '../entities/user.entity';
+import type { User } from '../entities';
+import type { Role } from '../entities';
 
 export interface IUserRepository {
   getUsers(): Promise<User[]>;

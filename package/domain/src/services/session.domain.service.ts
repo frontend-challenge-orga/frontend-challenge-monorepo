@@ -1,4 +1,4 @@
-import type { Session } from '../entities/session.entity';
+import type { Session } from '../entities';
 import type { ISessionRepository } from '../repositories';
 
 export interface ISessionService {

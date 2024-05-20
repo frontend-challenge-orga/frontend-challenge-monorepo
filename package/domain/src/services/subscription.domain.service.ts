@@ -1,5 +1,5 @@
-import { ISubscriptionRepository } from '../repositories/subscription.repository';
-import { Subscription } from '../entities';
+import type { ISubscriptionRepository } from '../repositories/subscription.repository';
+import type { Subscription } from '../entities';
 
 export interface ISubscriptionService {
   getSubscriptions: () => Promise<Subscription[]>;
