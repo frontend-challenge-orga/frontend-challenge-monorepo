@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --build --verbose tsconfig.build.json",
-    "dev": "pnpm run --parallel dev",
+    "dev": "pnpm --filter ./application/back-end run update:prisma && pnpm run --parallel dev",
     "start": "pnpm --filter ./application/back-end run start",
     "dev:domain": "pnpm --filter ./package/domain run dev",
     "dev:common": "pnpm --filter ./package/common run dev",
