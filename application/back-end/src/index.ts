@@ -25,6 +25,7 @@ import type {
   ISubscriptionService,
 } from '@package/domain';
 import { setupSubscriptionController } from '@controllers/subscription.controller';
+import { ChallengeController } from '@controllers/sandbox';
 
 const setupApplication = async () => {
   // Init Repositories

@@ -11,16 +11,6 @@ export const setupChallengeController = (challengeService: IChallengeService) =>
 
   app.get(CHALLENGE_ENDPOINTS.GET_CHALLENGES, challengeController);
 
-  /* app.get(CHALLENGE_ENDPOINTS.GET_CHALLENGES, async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const result = await challengeService.getChallenges();
-
-      res.status(200).json(result);
-    } catch (error) {
-      next(new UnexpectedError());
-    }
-  }); */
-
   app.post(
     CHALLENGE_ENDPOINTS.CREATE_CHALLENGE,
     inputValidation(createChallengeSchema),

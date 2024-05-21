@@ -8,20 +8,20 @@ type MyResponse = Pick<Response, 'status' | 'json'>;
 type MyNext = any;
 
 export class ChallengeController {
-  private request: IChallengeService['getChallenges'];
+  readonly request: IChallengeService['getChallenges'];
 
   constructor(request: IChallengeService['getChallenges']) {
     this.request = request;
   }
 
-  public async do(req: MyRequest, res: MyResponse, next: MyNext): Promise<void> {
+  public do = async (req: MyRequest, res: MyResponse, next: MyNext): Promise<void> => {
     const result = await this.request();
 
     if (result instanceof Error) {
       next(UnexpectedError);
+      return;
     }
 
-    res.status(200);
-    res.json(result);
-  }
+    res.status(200).json(result);
+  };
 }
