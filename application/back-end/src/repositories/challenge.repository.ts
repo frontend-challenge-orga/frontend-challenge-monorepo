@@ -9,9 +9,9 @@ export class ChallengeRepository implements IChallengeRepository {
     this.challengeRepository = dataSource;
   }
 
-  async getChallenges() {
+  getChallenges = async () => {
     return this.challengeRepository.challenge.findMany();
-  }
+  };
 
   async createChallenge(data: Challenge) {
     return this.challengeRepository.challenge.create({
