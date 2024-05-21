@@ -4,7 +4,9 @@
   "scripts": {
     "start": "node dist/src/index",
     "dev": "nodemon -e ts --watch src --exec ts-node -r tsconfig-paths/register --project tsconfig.json src/index.ts",
+    "build": "tsc",
     "test": "jest",
+    "test_watch": "jest --watch",
     "gui:prisma": "npx prisma studio",
     "update:prisma": "npx prisma generate && npx prisma db push"
   },

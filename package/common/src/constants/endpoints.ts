@@ -1,7 +1,7 @@
 export const CHALLENGE_ENDPOINTS = {
   GET_CHALLENGES: '/challenges',
   CREATE_CHALLENGE: '/challenges/create',
-};
+} as const;
 
 export const USER_ENDPOINTS = {
   GET_USERS: '/users',

@@ -4,16 +4,22 @@ import { UnexpectedError } from '#error';
 import { CHALLENGE_ENDPOINTS, createChallengeSchema } from '@package/common';
 import type { IChallengeService } from '@package/domain';
 import type { Request, Response, NextFunction } from 'express';
+import { ChallengeController } from './sandbox';
 
 export const setupChallengeController = (challengeService: IChallengeService) => {
-  app.get(CHALLENGE_ENDPOINTS.GET_CHALLENGES, async (_, res: Response, next: NextFunction) => {
+  const challengeController = new ChallengeController(challengeService.getChallenges).do;
+
+  app.get(CHALLENGE_ENDPOINTS.GET_CHALLENGES, challengeController);
+
+  /* app.get(CHALLENGE_ENDPOINTS.GET_CHALLENGES, async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const challenges = await challengeService.getChallenges();
-      res.status(200).json(challenges);
+      const result = await challengeService.getChallenges();
+
+      res.status(200).json(result);
     } catch (error) {
       next(new UnexpectedError());
     }
-  });
+  }); */
 
   app.post(
     CHALLENGE_ENDPOINTS.CREATE_CHALLENGE,

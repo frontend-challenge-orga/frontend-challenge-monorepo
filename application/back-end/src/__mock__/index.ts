@@ -11,3 +11,10 @@ export const userRepositoryMock = {
   updateUser: jest.fn(),
   deleteUser: jest.fn(),
 };
+
+export const reqMock = jest.fn();
+export const resMock = {
+  status: jest.fn(),
+  json: jest.fn(),
+};
+export const nextMock = jest.fn();
