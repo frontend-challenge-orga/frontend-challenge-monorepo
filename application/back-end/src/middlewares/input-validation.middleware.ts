@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { NextFunction, Request, Response } from 'express';
-import { BadRequestError } from '#error';
+import { BadRequestError } from '@package/domain';
 
 export const inputValidation = (schema: z.ZodSchema<any>) => {
   return (req: Request, res: Response, next: NextFunction) => {

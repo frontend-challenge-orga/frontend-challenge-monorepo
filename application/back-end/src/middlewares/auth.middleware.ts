@@ -1,5 +1,10 @@
-import { extractAuthToken, ISessionRepository, IUserRepository } from '@package/domain';
-import { UnauthorizedError, UnexpectedError } from '#error';
+import {
+  extractAuthToken,
+  ISessionRepository,
+  IUserRepository,
+  UnauthorizedError,
+  UnexpectedError,
+} from '@package/domain';
 import type { Request, Response, NextFunction } from 'express';
 
 interface IAuthMiddleware {

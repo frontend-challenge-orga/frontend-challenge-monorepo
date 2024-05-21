@@ -1,6 +1,5 @@
 import { reqMock, resMock, nextMock } from '#mock';
-import { UnexpectedError } from '#error';
-import { httpStatus } from '@package/domain';
+import { httpStatus, UnexpectedError } from '@package/domain';
 import { ChallengeControllerGet } from '@controllers/challenge.controller';
 
 beforeEach(() => {

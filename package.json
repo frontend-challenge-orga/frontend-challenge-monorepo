@@ -12,7 +12,9 @@
     "dev:front": "pnpm --filter ./application/front-end run dev",
     "test:back": "pnpm --filter ./application/back-end run test",
     "test_watch:back": "pnpm --filter ./application/back-end run test_watch",
-    "gui:prisma": "pnpm --filter ./application/back-end run gui:prisma"
+    "gui:prisma": "pnpm --filter ./application/back-end run gui:prisma",
+    "build:back": "pnpm --filter ./application/back-end run build",
+    "build:domain": "pnpm --filter ./package/domain run build"
   },
   "license": "ISC",
   "devDependencies": {

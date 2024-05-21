@@ -16,6 +16,8 @@ type CustomErrorInput = {
   detail?: string;
 };
 
+export type BuildInErrorInput = Pick<CustomErrorInput, 'detail'>;
+
 export const httpStatus = {
   OK: 200,
   CREATED: 201,

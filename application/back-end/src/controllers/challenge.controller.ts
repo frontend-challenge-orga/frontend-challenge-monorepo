@@ -1,8 +1,7 @@
 import { app } from '@config/express.configuration';
 import { inputValidation } from '@middlewares/input-validation.middleware';
-import { UnexpectedError } from '#error';
 import { CHALLENGE_ENDPOINTS, createChallengeSchema } from '@package/common';
-import { httpStatus, type IChallengeService } from '@package/domain';
+import { httpStatus, type IChallengeService, UnexpectedError } from '@package/domain';
 import type { Request, Response, NextFunction } from 'express';
 
 export const setupChallengeController = (challengeService: IChallengeService) => {

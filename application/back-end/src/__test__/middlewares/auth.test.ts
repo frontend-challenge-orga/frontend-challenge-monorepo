@@ -1,7 +1,7 @@
 import { AuthMiddleware } from '@middlewares/auth.middleware';
 import { getMockRes, getMockReq } from '@jest-mock/express';
 import { sessionRepositoryMock, userRepositoryMock } from '#mock';
-import { UnauthorizedError, UnexpectedError } from '#error';
+import { UnauthorizedError, UnexpectedError } from '@package/domain';
 
 const { res, next, mockClear } = getMockRes();
 
