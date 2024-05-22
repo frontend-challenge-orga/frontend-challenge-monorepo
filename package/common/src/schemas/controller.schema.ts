@@ -30,3 +30,7 @@ export const createPaymentSchema = z.object({
   customer_email: z.string().email(),
   subscription_duration: z.enum(['MONTHLY', 'YEARLY']),
 });
+
+export const suspendSubscriptionSchema = z.object({
+  userId: z.string(),
+});

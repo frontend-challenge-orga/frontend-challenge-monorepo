@@ -13,10 +13,10 @@
       "@middlewares/*": ["src/middlewares/*"],
       "@services/*": ["src/services/*"],
       "@repositories/*": ["src/repositories/*"],
-
+      "@use-cases/*": ["src/use-cases/*"],
       "#mock": ["src/__mock__/index"],
       "#type": ["src/types/index"],
-      "#errors": ["src/errors/index"],
+      "#errors": ["src/errors/index"]
     }
   },
   "include": ["src"],

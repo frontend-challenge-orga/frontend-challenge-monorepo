@@ -11,6 +11,17 @@ export class UnexpectedError extends CustomError {
   }
 }
 
+export class NotFoundError extends CustomError {
+  constructor(input?: BuildInErrorInput) {
+    super({
+      message: 'Resource not found.',
+      code: httpStatus.NOT_FOUND,
+      detail: input?.detail,
+    });
+    this.name = NotFoundError.name;
+  }
+}
+
 export class UnauthorizedError extends CustomError {
   constructor(input?: BuildInErrorInput) {
     super({
@@ -30,5 +41,16 @@ export class BadRequestError extends CustomError {
       detail: input?.detail,
     });
     this.name = BadRequestError.name;
+  }
+}
+
+export class SubscriptionNotActiveError extends CustomError {
+  constructor(input?: BuildInErrorInput) {
+    super({
+      message: 'Subscription is not active.',
+      code: httpStatus.BAD_REQUEST,
+      detail: input?.detail,
+    });
+    this.name = SubscriptionNotActiveError.name;
   }
 }

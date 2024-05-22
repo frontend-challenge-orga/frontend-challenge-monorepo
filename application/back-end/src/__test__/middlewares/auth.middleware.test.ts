@@ -1,8 +1,7 @@
 import { AuthMiddleware } from '@middlewares/auth.middleware';
 import { getMockRes, getMockReq } from '@jest-mock/express';
-import { sessionRepositoryMock, userRepositoryMock } from '#mock';
-/*import { UnauthorizedError, UnexpectedError } from '@package/domain';*/
-import { UnauthorizedError, UnexpectedError } from '#errors';
+import { sessionServiceMock, userServiceMock } from '#mock';
+import { UnauthorizedError, UnexpectedError } from '@package/domain';
 
 const { res, next, mockClear } = getMockRes();
 
@@ -11,7 +10,7 @@ describe('AuthMiddleware', () => {
 
   beforeEach(() => {
     mockClear();
-    authMiddleware = new AuthMiddleware(sessionRepositoryMock, userRepositoryMock);
+    authMiddleware = new AuthMiddleware(sessionServiceMock, userServiceMock);
   });
 
   describe('extractToken', () => {
@@ -44,7 +43,7 @@ describe('AuthMiddleware', () => {
   describe('authenticate', () => {
     it('should call next with UnauthorizedError when no session is found', async () => {
       const req = getMockReq({ headers: { authorization: 'Bearer token' } });
-      sessionRepositoryMock.getSessionsByToken.mockResolvedValue([]);
+      sessionServiceMock.getSessionsByToken.mockResolvedValue([]);
 
       await authMiddleware.authenticate(req, res, next);
 
@@ -54,7 +53,7 @@ describe('AuthMiddleware', () => {
     it('should call next with UnexpectedError when token is invalid', async () => {
       const req = getMockReq({ headers: { authorization: 'Bearer token' } });
 
-      sessionRepositoryMock.getSessionsByToken.mockRejectedValue(new Error());
+      sessionServiceMock.getSessionsByToken.mockRejectedValue(new Error());
 
       await authMiddleware.authenticate(req, res, next);
 
@@ -63,7 +62,7 @@ describe('AuthMiddleware', () => {
 
     it('should call next when session is found', async () => {
       const req = getMockReq({ headers: { authorization: 'Bearer token' } });
-      sessionRepositoryMock.getSessionsByToken.mockResolvedValue([{ userId: 1 }]);
+      sessionServiceMock.getSessionsByToken.mockResolvedValue([{ userId: 1 }]);
 
       await authMiddleware.authenticate(req, res, next);
 
@@ -75,8 +74,8 @@ describe('AuthMiddleware', () => {
     it('should call next with UnauthorizedError when user is not an admin', async () => {
       const req = getMockReq({ headers: { authorization: 'Bearer token' } });
 
-      sessionRepositoryMock.getSessionsByToken.mockResolvedValue([{ userId: 1 }]);
-      userRepositoryMock.getUserRole.mockResolvedValue('USER');
+      sessionServiceMock.getSessionsByToken.mockResolvedValue([{ userId: 1 }]);
+      userServiceMock.getUserRole.mockResolvedValue('USER');
 
       await authMiddleware.admin(req, res, next);
 
@@ -86,8 +85,8 @@ describe('AuthMiddleware', () => {
     it('should call next with user is admin', async () => {
       const req = getMockReq({ headers: { authorization: 'Bearer token' } });
 
-      sessionRepositoryMock.getSessionsByToken.mockResolvedValue([{ userId: 1 }]);
-      userRepositoryMock.getUserRole.mockResolvedValue('ADMIN');
+      sessionServiceMock.getSessionsByToken.mockResolvedValue([{ userId: 1 }]);
+      userServiceMock.getUserRole.mockResolvedValue('ADMIN');
 
       await authMiddleware.admin(req, res, next);
 

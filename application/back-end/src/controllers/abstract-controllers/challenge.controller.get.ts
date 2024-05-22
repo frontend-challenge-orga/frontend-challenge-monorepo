@@ -1,7 +1,4 @@
-/*import { httpStatus, IChallengeService, UnexpectedError } from '@package/domain';*/
-import { IChallengeService } from '@package/domain';
-import { httpStatus, UnexpectedError } from '#errors';
-
+import { httpStatus, IChallengeService, UnexpectedError } from '@package/domain';
 import type { Response } from 'express';
 
 export class ChallengeControllerGet {

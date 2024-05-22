@@ -1,4 +1,4 @@
-import type { IPaymentRepository } from '@package/domain';
+import type { CreateCheckoutSession, IPaymentRepository } from '@package/domain';
 import type Stripe from 'stripe';
 
 export class StripeRepository implements IPaymentRepository {
@@ -14,11 +14,7 @@ export class StripeRepository implements IPaymentRepository {
       : process.env.STRIPE_YEARLY_SUBSCRIPTION_PRICE_ID;
   }
 
-  async createCheckoutSession(
-    customerId: string,
-    customerEmail: string,
-    subscriptionDuration: 'MONTHLY' | 'YEARLY',
-  ): Promise<Stripe.Checkout.Session> {
+  async createCheckoutSession(createCheckoutSession: CreateCheckoutSession): Promise<Stripe.Checkout.Session> {
     return await this.paymentRepository.checkout.sessions.create({
       line_items: [
         {
@@ -29,16 +25,31 @@ export class StripeRepository implements IPaymentRepository {
 
       subscription_data: {
         metadata: {
-          userID: customerId,
-          customer_email: customerEmail,
-          subscription_duration: subscriptionDuration,
+          userID: createCheckoutSession.customerId,
+          customer_email: createCheckoutSession.customerEmail,
+          subscription_duration: createCheckoutSession.subscriptionDuration,
         },
       },
 
       mode: 'subscription',
-      customer_email: customerEmail,
+      customer_email: createCheckoutSession.customerEmail,
       success_url: process.env.STRIPE_SUCCESS_URL,
       cancel_url: process.env.STRIPE_CANCEL_URL,
+    });
+  }
+
+  async getSubscription(userId: string): Promise<Stripe.Response<Stripe.Subscription>> {
+    return await this.paymentRepository.subscriptions.retrieve(userId);
+  }
+
+  async getSubscriptionStatus(subscriptionId: string): Promise<Stripe.Subscription.Status> {
+    const subscription = await this.getSubscription(subscriptionId);
+    return subscription.status;
+  }
+
+  async suspendSubscription(subscriptionId: string): Promise<Stripe.Response<Stripe.Subscription>> {
+    return await this.paymentRepository.subscriptions.update(subscriptionId, {
+      cancel_at_period_end: true,
     });
   }
 }

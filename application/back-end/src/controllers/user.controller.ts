@@ -1,9 +1,7 @@
 import { app } from '@config/express.configuration';
 import { inputValidation } from '@middlewares/input-validation.middleware';
 import { USER_ENDPOINTS, PROTECTED_ENDPOINTS, updateUserSchema } from '@package/common';
-/*import { type IUserService, UnexpectedError } from '@package/domain';*/
-import { IUserService } from '@package/domain';
-import { UnexpectedError } from '#errors';
+import { type IUserService, UnexpectedError } from '@package/domain';
 import type { Response, NextFunction } from 'express';
 
 export const setupUserController = (userService: IUserService) => {

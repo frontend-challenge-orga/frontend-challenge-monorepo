@@ -14,6 +14,8 @@ import { setupPaymentController } from '@controllers/payment.controller';
 import { setupSubscriptionController } from '@controllers/subscription.controller';
 import { setupErrorHandler } from '@middlewares/error-handler.middleware';
 
+import { SuspendSubscription } from '@use-cases/suspend-subscription';
+
 import { AuthMiddleware } from '@middlewares/auth.middleware';
 
 import { UserService, SessionService, ChallengeService, PaymentService, SubscriptionService } from '@package/domain';
@@ -41,6 +43,9 @@ const setupApplication = async () => {
   const paymentService: IPaymentService = new PaymentService(stripeRepository);
   const subscriptionService: ISubscriptionService = new SubscriptionService(subscriptionRepository);
 
+  //Init Use-Cases
+  const suspendSubscription = new SuspendSubscription(subscriptionService, paymentService);
+
   //Config Middleware
   const authMiddleware = new AuthMiddleware(sessionInfraService, userInfraService);
   await configMiddleware(authMiddleware);
@@ -49,7 +54,7 @@ const setupApplication = async () => {
   setupChallengeController(challengeService);
   setupUserController(userInfraService);
   setupPaymentController(paymentService);
-  setupSubscriptionController(subscriptionService);
+  setupSubscriptionController(subscriptionService, suspendSubscription);
 
   //Error Handler Middleware
   setupErrorHandler();

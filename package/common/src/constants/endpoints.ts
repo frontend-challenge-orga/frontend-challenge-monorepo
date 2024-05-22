@@ -14,6 +14,10 @@ export const PAYMENT_ENDPOINTS = {
   CREATE_CHECKOUT_SESSION: '/create-checkout-session',
 };
 
+export const SUBSCRIPTION_ENDPOINTS = {
+  SUSPEND_SUBSCRIPTION: '/subscription/suspend',
+};
+
 export const PROTECTED_ENDPOINTS = {
   AUTHENTICATED_ROUTE: '/authenticated-route',
   ADMIN_ROUTE: '/admin-route',

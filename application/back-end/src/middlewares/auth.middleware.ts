@@ -1,12 +1,4 @@
-import {
-  extractAuthToken,
-  ISessionRepository,
-  IUserRepository,
-  /*  UnauthorizedError,
-  UnexpectedError,*/
-} from '@package/domain';
-
-import { UnexpectedError, UnauthorizedError } from '#errors';
+import { extractAuthToken, ISessionService, IUserService, UnauthorizedError, UnexpectedError } from '@package/domain';
 import type { Request, Response, NextFunction } from 'express';
 
 interface IAuthMiddleware {
@@ -16,12 +8,13 @@ interface IAuthMiddleware {
 }
 
 export class AuthMiddleware implements IAuthMiddleware {
-  private sessionRepository: ISessionRepository;
-  private userRepository: IUserRepository;
+  private sessionService: ISessionService;
+  private userService: IUserService;
 
-  constructor(sessionRepository: ISessionRepository, userRepository: IUserRepository) {
-    this.sessionRepository = sessionRepository;
-    this.userRepository = userRepository;
+  constructor(sessionService: ISessionService, userService: IUserService) {
+    this.sessionService = sessionService;
+    this.userService = userService;
+
     this.authenticate = this.authenticate.bind(this);
     this.admin = this.admin.bind(this);
   }
@@ -42,7 +35,7 @@ export class AuthMiddleware implements IAuthMiddleware {
     const token = this.extractToken(req, next);
 
     try {
-      const sessions = await this.sessionRepository.getSessionsByToken(token);
+      const sessions = await this.sessionService.getSessionsByToken(token);
 
       if (!sessions.length) {
         next(new UnauthorizedError({ detail: 'no session found' }));
@@ -60,8 +53,8 @@ export class AuthMiddleware implements IAuthMiddleware {
     const token = this.extractToken(req, next);
 
     try {
-      const sessions = await this.sessionRepository.getSessionsByToken(token);
-      const role = await this.userRepository.getUserRole(sessions[0].userId);
+      const sessions = await this.sessionService.getSessionsByToken(token);
+      const role = await this.userService.getUserRole(sessions[0].userId);
 
       const isAuthorized = role === 'ADMIN';
 
