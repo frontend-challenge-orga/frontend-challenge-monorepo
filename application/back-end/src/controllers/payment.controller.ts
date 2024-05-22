@@ -1,7 +1,9 @@
 import { app } from '@config/express.configuration';
 import { inputValidation } from '@middlewares/input-validation.middleware';
 import { createPaymentSchema, PAYMENT_ENDPOINTS, PROTECTED_ENDPOINTS, SubscriptionDurationType } from '@package/common';
-import { type IPaymentService, UnexpectedError } from '@package/domain';
+/*import { type IPaymentService, UnexpectedError } from '@package/domain';*/
+import { IPaymentService } from '@package/domain';
+import { UnexpectedError } from '#errors';
 import type { Response, NextFunction } from 'express';
 import type { CustomRequest } from '#type';
 

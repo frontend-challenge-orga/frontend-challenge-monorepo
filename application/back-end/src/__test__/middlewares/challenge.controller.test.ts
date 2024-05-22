@@ -1,6 +1,7 @@
 import { reqMock, resMock, nextMock } from '#mock';
-import { httpStatus, UnexpectedError } from '@package/domain';
-import { ChallengeControllerGet } from '@controllers/challenge.controller';
+/*import { httpStatus, UnexpectedError } from '@package/domain';*/
+import { httpStatus, UnexpectedError } from '#errors';
+import { ChallengeControllerGet } from '@controllers/abstract-controllers/challenge.controller.get';
 
 beforeEach(() => {
   jest.clearAllMocks();

@@ -11,6 +11,7 @@ import { SubscriptionRepository } from '@repositories/subscription.repository';
 import { setupUserController } from '@controllers/user.controller';
 import { setupChallengeController } from '@controllers/challenge.controller';
 import { setupPaymentController } from '@controllers/payment.controller';
+import { setupSubscriptionController } from '@controllers/subscription.controller';
 import { setupErrorHandler } from '@middlewares/error-handler.middleware';
 
 import { AuthMiddleware } from '@middlewares/auth.middleware';
@@ -24,7 +25,6 @@ import type {
   IPaymentService,
   ISubscriptionService,
 } from '@package/domain';
-import { setupSubscriptionController } from '@controllers/subscription.controller';
 
 const setupApplication = async () => {
   // Init Repositories

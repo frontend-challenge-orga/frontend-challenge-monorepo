@@ -1,6 +1,7 @@
 import { inputValidation } from '@middlewares/input-validation.middleware';
 import { getMockReq, getMockRes } from '@jest-mock/express';
-import { CustomError } from '@package/domain';
+/*import { CustomError } from '@package/domain';*/
+import { CustomError } from '#errors';
 import * as z from 'zod';
 
 const { res, next, mockClear } = getMockRes();

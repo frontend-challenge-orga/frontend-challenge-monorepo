@@ -1,6 +1,7 @@
 import { app } from '@config/express.configuration';
 import { Request, Response, NextFunction } from 'express';
-import { httpStatus, CustomError } from '@package/domain';
+/*import { httpStatus, CustomError } from '@package/domain';*/
+import { httpStatus, CustomError } from '#errors';
 
 export function setupErrorHandler() {
   app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {

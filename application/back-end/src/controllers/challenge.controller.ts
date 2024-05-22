@@ -1,7 +1,11 @@
 import { app } from '@config/express.configuration';
 import { inputValidation } from '@middlewares/input-validation.middleware';
+import { ChallengeControllerGet } from '@controllers/abstract-controllers/challenge.controller.get';
 import { CHALLENGE_ENDPOINTS, createChallengeSchema } from '@package/common';
-import { httpStatus, type IChallengeService, UnexpectedError } from '@package/domain';
+/*import { type IChallengeService, UnexpectedError } from '@package/domain';*/
+import { UnexpectedError } from '#errors';
+import type { IChallengeService } from '@package/domain';
+
 import type { Request, Response, NextFunction } from 'express';
 
 export const setupChallengeController = (challengeService: IChallengeService) => {
@@ -20,23 +24,3 @@ export const setupChallengeController = (challengeService: IChallengeService) =>
     },
   );
 };
-
-export class ChallengeControllerGet {
-  request: IChallengeService['getChallenges'];
-
-  constructor(request: IChallengeService['getChallenges']) {
-    this.request = request;
-  }
-
-  public do = async (req: any, res: Pick<Response, 'status' | 'json'>, next: any): Promise<void> => {
-    const result = await this.request();
-
-    if (result instanceof Error) {
-      next(new UnexpectedError({ detail: result.message }));
-      return;
-    }
-
-    res.status(httpStatus.OK);
-    res.json(result);
-  };
-}
