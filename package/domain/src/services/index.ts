@@ -3,3 +3,4 @@ export * from './session.domain.service';
 export * from './user.domain.service';
 export * from './payment.domain.service';
 export * from './subscription.domain.service';
+export * from './mailing.domain.service';

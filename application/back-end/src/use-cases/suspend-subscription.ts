@@ -1,12 +1,24 @@
-import { IPaymentService, ISubscriptionService, SubscriptionNotActiveError, NotFoundError } from '@package/domain';
+import {
+  IPaymentService,
+  ISubscriptionService,
+  SubscriptionNotActiveError,
+  NotFoundError,
+  IMailingService,
+} from '@package/domain';
 
 export class SuspendSubscription {
   readonly subscriptionService: ISubscriptionService;
   readonly paymentService: IPaymentService;
+  readonly mailingService: IMailingService;
 
-  constructor(subscriptionService: ISubscriptionService, paymentService: IPaymentService) {
+  constructor(
+    subscriptionService: ISubscriptionService,
+    paymentService: IPaymentService,
+    mailingService: IMailingService,
+  ) {
     this.subscriptionService = subscriptionService;
     this.paymentService = paymentService;
+    this.mailingService = mailingService;
 
     this.do = this.do.bind(this);
   }
@@ -27,5 +39,7 @@ export class SuspendSubscription {
     }
 
     await this.paymentService.suspendSubscription(stripe_subscription.id);
+
+    await this.mailingService.sendSuspendingSubscriptionEmail('adlpromail@gmail.com');
   }
 }

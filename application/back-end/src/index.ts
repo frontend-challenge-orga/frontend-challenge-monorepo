@@ -1,4 +1,5 @@
 import prisma from '@config/prisma.configuration';
+import resend from '@config/resend.configuration';
 import { stripe } from '@config/stripe.configuration';
 import { startExpressServer, configMiddleware, APPLICATION_PORT } from '@config/express.configuration';
 
@@ -7,6 +8,7 @@ import { SessionRepository } from '@repositories/session.repository';
 import { ChallengeRepository } from '@repositories/challenge.repository';
 import { StripeRepository } from '@repositories/stripe.repository';
 import { SubscriptionRepository } from '@repositories/subscription.repository';
+import { ResendRepository } from '@repositories/resend.repository';
 
 import { setupUserController } from '@controllers/user.controller';
 import { setupChallengeController } from '@controllers/challenge.controller';
@@ -18,7 +20,14 @@ import { SuspendSubscription } from '@use-cases/suspend-subscription';
 
 import { AuthMiddleware } from '@middlewares/auth.middleware';
 
-import { UserService, SessionService, ChallengeService, PaymentService, SubscriptionService } from '@package/domain';
+import {
+  UserService,
+  SessionService,
+  ChallengeService,
+  PaymentService,
+  SubscriptionService,
+  MailingService,
+} from '@package/domain';
 
 import type {
   IUserService,
@@ -26,6 +35,7 @@ import type {
   IChallengeService,
   IPaymentService,
   ISubscriptionService,
+  IMailingService,
 } from '@package/domain';
 
 const setupApplication = async () => {
@@ -35,6 +45,7 @@ const setupApplication = async () => {
   const userRepository = new UserRepository(prisma);
   const stripeRepository = new StripeRepository(stripe);
   const subscriptionRepository = new SubscriptionRepository(prisma);
+  const resendRepository = new ResendRepository(resend);
 
   //Init Services
   const challengeService: IChallengeService = new ChallengeService(challengeRepository);
@@ -42,9 +53,10 @@ const setupApplication = async () => {
   const userInfraService: IUserService = new UserService(userRepository);
   const paymentService: IPaymentService = new PaymentService(stripeRepository);
   const subscriptionService: ISubscriptionService = new SubscriptionService(subscriptionRepository);
+  const mailingService: IMailingService = new MailingService(resendRepository);
 
   //Init Use-Cases
-  const suspendSubscription = new SuspendSubscription(subscriptionService, paymentService);
+  const suspendSubscription = new SuspendSubscription(subscriptionService, paymentService, mailingService);
 
   //Config Middleware
   const authMiddleware = new AuthMiddleware(sessionInfraService, userInfraService);

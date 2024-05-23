@@ -27,6 +27,10 @@ export const mockPaymentService = {
   suspendSubscription: jest.fn(),
 };
 
+export const mockMailingService = {
+  sendSuspendingSubscriptionEmail: jest.fn(),
+};
+
 export const reqMock = jest.fn();
 
 export const resMock = {
