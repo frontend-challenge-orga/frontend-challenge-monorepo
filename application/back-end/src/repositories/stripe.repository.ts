@@ -18,7 +18,7 @@ export class StripeRepository implements IPaymentRepository {
     return await this.paymentRepository.checkout.sessions.create({
       line_items: [
         {
-          price: this.getStripePriceIdBySubscriptionDuration('MONTHLY'),
+          price: this.getStripePriceIdBySubscriptionDuration(createCheckoutSession.subscriptionDuration),
           quantity: 1,
         },
       ],

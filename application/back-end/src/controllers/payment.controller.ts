@@ -13,7 +13,7 @@ interface PaymentRequestBody {
 
 export const setupPaymentController = (paymentService: IPaymentService) => {
   app.post(
-    PROTECTED_ENDPOINTS.AUTHENTICATED_ROUTE + PAYMENT_ENDPOINTS.CREATE_CHECKOUT_SESSION,
+    PAYMENT_ENDPOINTS.CREATE_CHECKOUT_SESSION,
     inputValidation(createPaymentSchema),
     async (req: CustomRequest<PaymentRequestBody>, res: Response, next: NextFunction) => {
       try {
