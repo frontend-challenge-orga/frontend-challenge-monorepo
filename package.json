@@ -2,6 +2,9 @@
   "name": "frontend-challenge-monorepo",
   "private": true,
   "main": "index.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "build": "tsc --build --verbose tsconfig.build.json",
     "dev": "pnpm --filter ./application/back-end run update:prisma && pnpm run --parallel dev",
