@@ -16,6 +16,7 @@
     "@package/domain": "workspace:^",
     "@prisma/client": "5.13.0",
     "express": "^4.19.2",
+    "resend": "^3.2.0",
     "stripe": "^15.7.0",
     "zod": "^3.23.8"
   },
