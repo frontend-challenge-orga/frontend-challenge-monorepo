@@ -17,7 +17,8 @@
     "test_watch:back": "pnpm --filter ./application/back-end run test_watch",
     "gui:prisma": "pnpm --filter ./application/back-end run gui:prisma",
     "build:back": "pnpm --filter ./application/back-end run build",
-    "build:domain": "pnpm --filter ./package/domain run build"
+    "build:domain": "pnpm --filter ./package/domain run build",
+    "clear:dist": "rm -rf ./application/back-end/dist ./package/domain/dist ./package/common/dist"
   },
   "license": "ISC",
   "devDependencies": {
